@@ -21,10 +21,9 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{b7b38481-19f1-4ab2-b170-d8fbca7d4214}</ProjectGuid>
-    <RootNamespace>EXO1</RootNamespace>
+    <ProjectGuid>{fa453901-a64d-47c0-bef5-a8021cba7a4c}</ProjectGuid>
+    <RootNamespace>EX2</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>EX1</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -140,11 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="main.c" />
-    <ClCompile Include="tab.c" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="tab.h" />
+    <ClCompile Include="..\EXO2\main.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

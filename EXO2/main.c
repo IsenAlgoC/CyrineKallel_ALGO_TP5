@@ -210,6 +210,7 @@ int main()
 	printf("Taille initiale : %d \n", tab.size);
 	incrementArraySize(&tab, 3); //Incrémentation de 3
 	printf("taille incrementee est : %d \n", tab.size);
+	
 
 	//test: 
 	// setElement(TABLEAU *tab, int pos,  int element);
@@ -217,14 +218,17 @@ int main()
 	setElement(&tab, 6, 4); //l'element 4 est mis en position 6
 	setElement(&tab, 5, 3); //l'element 3 est mis en position 5
 	setElement(&tab, 4, 1); //l'element 1 est mis en position 4	
-
+	setElement(&tab, 16, 10); //l'element 10 est mis en position 16	
 	//displayElements(TABLEAU *tab, int startPos, int endPos);
+	
+	printf("Affichage de la portion du tableau :\n");
 	displayElements(&tab, 1, 50); //on affiche la portion 
 
 	deleteElements(&tab, 4, 6); ///on supprime les elments entre pos 4 et 6
 	printf("\n");
 
-	displayElements(&tab, 1, 9); //on affiche une nouvelle fois apres la supression des elements
+	printf("Affichage de la portion apres supression des elements du tableau :\n");
+	displayElements(&tab, 1, 20); //on affiche une nouvelle fois apres la supression des elements
 	printf("\n");
 
 	return EXIT_SUCCESS;
