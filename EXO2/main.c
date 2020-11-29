@@ -3,35 +3,35 @@
 #include <math.h>
 
 
-//DéfinisR la constante suivante pour fixer la taille initiale du tableau d’entiers : 
+//DÃ©finisR la constante suivante pour fixer la taille initiale du tableau dâ€™entiers : 
 #define TAILLEINITIALE 100
 
-//Créez un type structuré nommé TABLEAU pour manipuler les tableaux d'entiers :
+//CrÃ©ez un type structurÃ© nommÃ© TABLEAU pour manipuler les tableaux d'entiers :
 
 typedef struct Tableau
 {
-	int* elt; // le tableau d’entiers
-	int size; // la taille de ce tableau d’entiers
-	int eltsCount; // le nombre d’éléments dans le tableau
+	int* elt; // le tableau dâ€™entiers
+	int size; // la taille de ce tableau dâ€™entiers
+	int eltsCount; // le nombre dâ€™Ã©lÃ©ments dans le tableau
 } TABLEAU;
 
-//1 - crée un nouveau TABLEAU en allouant une taille initiale pour les données.
+//1 - crÃ©e un nouveau TABLEAU en allouant une taille initiale pour les donnÃ©es.
 
-TABLEAU newArray() //fonction de type tableau  qui renvoie une structure TABLEAU, avec un pointeur elt = NULL si allocation a échoué.
+TABLEAU newArray() //fonction de type tableau  qui renvoie une structure TABLEAU, avec un pointeur elt = NULL si allocation a Ã©chouÃ©.
 {
 	TABLEAU elt;
 	elt.size = TAILLEINITIALE; //initialise la taille initiale du tableau elt
-	elt.elt = (int*)malloc(TAILLEINITIALE * sizeof(int)); // alloue la mémoire grace a la fonction malloc
-	elt.eltsCount = 0; //le champ eltsCount initialisé à zéro.
+	elt.elt = (int*)malloc(TAILLEINITIALE * sizeof(int)); // alloue la mÃ©moire grace a la fonction malloc
+	elt.eltsCount = 0; //le champ eltsCount initialisÃ© Ã  zÃ©ro.
 
-	if (elt.elt == NULL) // pointeur elt = NULL si allocation a échoué
+	if (elt.elt == NULL) // pointeur elt = NULL si allocation a Ã©chouÃ©
 	{
 		return elt;
 	}
 
 	for (int i = 0; i < elt.size; i++)
 	{
-		elt.elt[i] = 0; //Le tableau elt sera initialisé avec des zéros
+		elt.elt[i] = 0; //Le tableau elt sera initialisÃ© avec des zÃ©ros
 	}
 
 	return elt;
@@ -68,51 +68,41 @@ int incrementArraySize(TABLEAU* tab, int incrementValue) //fonction qui modifie 
 
 }
 
-//3 - Ecrit un élément à une position donnée sans insertion
+//3 - Ecrit un Ã©lÃ©ment Ã  une position donnÃ©e sans insertion
 
-int setElement(TABLEAU* tab, int pos, int element) //fonction qui ecrit un element a une position donnée, avec le  paramètre pos qui indique la position d’insertion de la variable
+int setElement(TABLEAU* tab, int pos, int element) //fonction qui ecrit un element a une position donnÃ©e, avec le  paramÃ¨tre pos qui indique la position dâ€™insertion de la variable
 {
 	if ((tab->elt == NULL) || (pos < 1) || (tab->size < 0))
 	{
-		return 0; //en cas de parametre erronés
+		return 0; //en cas de parametre erronÃ©s
 	}
 
-	//1er cas: Si l'élément est inséré sans probleme après le dernier élément dans le tableau,
-	if (pos < tab->size) //cad la memoire allouée n'est pas depassé:
+	//1er cas: Si l'Ã©lÃ©ment est insÃ©rÃ© sans probleme aprÃ¨s le dernier Ã©lÃ©ment dans le tableau,
+	if (pos < tab->size) //cad la memoire allouÃ©e n'est pas depassÃ©:
 	{
-		tab->elt[pos - 1] = element; //On ecrit l'element a la position donnée
+		tab->elt[pos - 1] = element; //On ecrit l'element a la position donnÃ©e
 		return 0;
 	}
 
-	//2eme cas: Si l'élément inséré n'est pas immédiatement après le dernier élément,  il faut agrandir le tableau,
+	//2eme cas: Si l'Ã©lÃ©ment insÃ©rÃ© n'est pas immÃ©diatement aprÃ¨s le dernier Ã©lÃ©ment,  il faut agrandir le tableau,
 	else
-		// memoire alouée est depase et donc pointeur en dehors du tableau
+		// memoire alouÃ©e est depase et donc pointeur en dehors du tableau
 	{
 		if (incrementArraySize(tab, pos - (*tab).size) == -1)
 		{
 			return 0;
 		}
-		(*tab).elt[pos - 1] = element;
+		tab->elt[pos - 1] = element; //On ecrit l'element a la position donnÃ©e
 
-		return pos; //renvoie osition de l’élément inséré
+		return pos; //renvoie osition de lâ€™Ã©lÃ©ment insÃ©rÃ©
 
-		//incrementArraySize (tab, pos - tab->size); //on utilise la fonction  definie précedemment pour augmonter la taille 
-
-
-			/*for (int i = tab->size; i <= pos; i++) 
-			{
-				tab->elt[i] = 0; //on  réer des éléments à zéros entre les deux.
-			}
-
-			tab->elt[pos - 1] = element; //On ecrit l'element a la position donnée
-			*/
-			
+		
 	}
 
 	
 }
 
-//4 - Affiche une portion du tableau de l’indice début à l’indice fin
+//4 - Affiche une portion du tableau de lâ€™indice dÃ©but Ã  lâ€™indice fin
 
 int displayElements(TABLEAU* tab, int startPos, int endPos)
 {
@@ -120,9 +110,9 @@ int displayElements(TABLEAU* tab, int startPos, int endPos)
 	{
 		return -1; // si erreur
 	}
-	// startPos >= EndPos n’est pas un cas d’erreur et doit être traité.
+	// startPos >= EndPos nâ€™est pas un cas dâ€™erreur et doit Ãªtre traitÃ©.
 
-	if (startPos == endPos) //comme end et start sont egaux donc un seul element va etre affiché
+	if (startPos == endPos) //comme end et start sont egaux donc un seul element va etre affichÃ©
 	{
 		printf("pos %d correspond a :%d\n", startPos, tab->elt[startPos - 1]);
 		return 0;
@@ -130,7 +120,7 @@ int displayElements(TABLEAU* tab, int startPos, int endPos)
 
 	if (startPos > endPos)
 	{
-		int indice = startPos; //les valeurs des 2 variable vont etre echangé grace a la variable temporaire 'indice'
+		int indice = startPos; //les valeurs des 2 variable vont etre echangÃ© grace a la variable temporaire 'indice'
 		startPos = endPos;
 		endPos = indice;
 	}
@@ -147,20 +137,20 @@ int displayElements(TABLEAU* tab, int startPos, int endPos)
 
 }
 
-//5 - Supprime des éléments avec compactage du tableau
+//5 - Supprime des Ã©lÃ©ments avec compactage du tableau
 
-int deleteElements(TABLEAU* tab, int startPos, int endPos) //fonction qui met a jour e nombre d'éléments dans le tableau et diminue sa taille du tableau
+int deleteElements(TABLEAU* tab, int startPos, int endPos) //fonction qui met a jour e nombre d'Ã©lÃ©ments dans le tableau et diminue sa taille du tableau
 {
 	if (tab->elt == NULL || endPos > tab->size || startPos < 1) //verification 
 	{
-		return -1; //Si parametre incohérents
+		return -1; //Si parametre incohÃ©rents
 	}
 
-	// startPos >= endPos n’est pas un cas d’erreur et doit être traité.
+	// startPos >= endPos nâ€™est pas un cas dâ€™erreur et doit Ãªtre traitÃ©.
 
 	if (startPos == endPos)
 	{
-		for (int i = startPos - 1; i < (tab->size - 1); i++) // un seul element va etre supprimé et le reste des elments apres ce dernier va etre décaler vers la gauche
+		for (int i = startPos - 1; i < (tab->size - 1); i++) // un seul element va etre supprimÃ© et le reste des elments apres ce dernier va etre dÃ©caler vers la gauche
 		{
 			tab->elt[i] = tab->elt[i + 1];
 		}
@@ -169,7 +159,7 @@ int deleteElements(TABLEAU* tab, int startPos, int endPos) //fonction qui met a 
 
 	if (startPos > endPos)
 	{
-		int indice = startPos; //les valeurs des 2 variable vont etre echangé grace a la variable temporaire 'indice'
+		int indice = startPos; //les valeurs des 2 variable vont etre echangÃ© grace a la variable temporaire 'indice'
 		startPos = endPos;
 		endPos = indice;
 	}
@@ -185,9 +175,9 @@ int deleteElements(TABLEAU* tab, int startPos, int endPos) //fonction qui met a 
 
 		int* tmp; //on introduit un pointeur sur une variable temporaire pour enregistrer le tableau
 		tmp = tab->elt;
-		tab->elt = (int*)realloc(tab->elt, (tab->size) - ((endPos - startPos + 1)) * sizeof(int));  // On réalloue la mémoire
+		tab->elt = (int*)realloc(tab->elt, (tab->size) - ((endPos - startPos + 1)) * sizeof(int));  // On rÃ©alloue la mÃ©moire
 
-			if (tab->elt == NULL) // Pour vérifier l'allocation la mémoire.
+			if (tab->elt == NULL) // Pour vÃ©rifier l'allocation la mÃ©moire.
 			{
 				return -1; //en cas d echec d'allocation
 			}
@@ -200,7 +190,7 @@ int deleteElements(TABLEAU* tab, int startPos, int endPos) //fonction qui met a 
 }
 
 
-//6 - Déclarez un tableau de type TABLEAU dans la fonction main
+//6 - DÃ©clarez un tableau de type TABLEAU dans la fonction main
 //et testez les fonctions
 
 int main()
@@ -208,7 +198,7 @@ int main()
 	TABLEAU tab = newArray(); //declaration de tab
 
 	printf("Taille initiale : %d \n", tab.size);
-	incrementArraySize(&tab, 3); //Incrémentation de 3
+	incrementArraySize(&tab, 3); //IncrÃ©mentation de 3
 	printf("taille incrementee est : %d \n", tab.size);
 	
 
